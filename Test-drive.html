@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Запись на тест-драйв</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Запись на тест-драйв</h1>
+    </header>
+
+    <section class="car-list">
+        <div class="car">
+            <img src="image/Ford1.jpg" alt="Автомобиль 1">
+            <h2>Автомобиль 1</h2>
+            <button class="test-drive-button" data-car="car1">Записаться на тест-драйв</button>
+        </div>
+        <div class="car">
+            <img src="image/Porsche1.jpg" alt="Автомобиль 2">
+            <h2>Автомобиль 2</h2>
+            <button class="test-drive-button" data-car="car2">Записаться на тест-драйв</button>
+        </div>
+    </section>
+
+    <section class="test-drive-form">
+        <h2>Запись на тест-драйв</h2>
+        <form id="testDriveForm">
+            <input type="text" id="name" placeholder="Ваше имя" required>
+            <input type="email" id="email" placeholder="Ваш email" required>
+            <input type="tel" id="phone" placeholder="Ваш телефон" required>
+            <input type="hidden" id="selectedCar">
+            <button type="submit">Отправить</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Белова Ольга Владимировна></p>
+    </footer>
+
+    <script>
+        const testDriveButtons = document.querySelectorAll('.test-drive-button');
+        const testDriveForm = document.getElementById('testDriveForm');
+        const selectedCar = document.getElementById('selectedCar');
+
+        testDriveButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                selectedCar.value = button.getAttribute('data-car');
+            });
+        });
+
+        testDriveForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const car = selectedCar.value;
+
+            console.log(`Имя: ${name}, Email: ${email}, Телефон: ${phone}, Выбранный автомобиль: ${car}`);
+        });
+    </script>
+</body>
+</html>
